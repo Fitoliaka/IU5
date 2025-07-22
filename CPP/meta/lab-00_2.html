@@ -88,7 +88,7 @@
 <p>Зайдите на <a href="http://github.com">github.com</a> и создайте новый <strong>пустой</strong> приватный репозиторий.</p>
 <p>Для этого нажмите на кнопку “New” в левой части главной страницы.</p>
 <p><img src="https://sun9-29.userapi.com/impg/QR5z7B17CqSYQPlHH30_-VZvUV2h-Cuzv3qAhw/cElTmizKyE8.jpg?size=325x92&amp;quality=96&amp;sign=96f218c2ea7d5989eabdb99727d352db&amp;type=album" alt="enter image description here"></p>
-<p>Назовите его так, как считаете нужным, но желательно достаточно информативно. Например, Lastname-PB-Labs-2025, где вместо “Lastname” должна быть ваша фамилия на латинице.</p>
+<p>Назовите его так, как считаете нужным, но желательно достаточно информативно. Например, Lastname-CPP-Labs-2025, где вместо “Lastname” должна быть ваша фамилия на латинице.</p>
 <p>Убедитесь, что вы создаете приватный, а не публичный репозиторий (должен стоять флажок напротив “Private”).</p>
 <p><img src="https://sun9-1.userapi.com/impg/fE3heNkkrizGdsyRsFTKon7jM2qRloNs5Yrm7A/uxQrb7yOE6A.jpg?size=525x127&amp;quality=96&amp;sign=77d613b0b6bd90e04c11bac97124fba2&amp;type=album" alt="enter image description here"></p>
 <p>Оставьте все остальные настройки без изменений.</p>
@@ -98,8 +98,8 @@
 <pre><code>git clone repo-url
 </code></pre>
 <p>Где repo-url - ssh-ссылка на ваш репозиторий. После этого в текущий директории должна появиться новая директория с вашим репозиторием. Перейдите в нее с помощью команды <strong>cd</strong>.</p>
-<p>Добавьте в качестве дополнительного удаленного репозитория публичный <a href="https://github.com/Arugaf/CS-IU5-Labs-2024">репозиторий</a> с лабораторными работами. Для этого введите следующую команду:</p>
-<pre><code>git remote add upstream git@github.com:Fitoliaka/PB-IU5-Labs-2025.git
+<p>Добавьте в качестве дополнительного удаленного репозитория публичный <a href="https://github.com/Fitoliaka/IU5">репозиторий</a> с лабораторными работами. Для этого введите следующую команду:</p>
+<pre><code>git remote add upstream git@github.com:Fitoliaka/IU5.git
 </code></pre>
 <p>Где <em>remote add</em> - указание на то, что нужно добавить дополнительный удаленный репозиторий, <em>upstream</em> - метка (название) удаленного репозитория (можно изменить на другое по желанию), <code>git@github.com:Arugaf/CS-IU5-Labs-2024.git</code> - ссылка на удаленный репозиторий.</p>
 <p>Убедитесь, что удаленный репозиторий успешно добавлен:</p>
@@ -121,7 +121,7 @@
 <p>И также запушьте ее в свой удаленный репозиторий:</p>
 <pre><code>git push --set-upstream origin lab_0
 </code></pre>
-<p>Откройте свой удаленный репозиторий на <a href="http://github.com">github.com</a> и убедитесь, что в нем отображаются обе ветки с названиями “main” и “lab_0”, и их содержимое аналогично основному репозиторию (<a href="https://github.com/Arugaf/CS-IU5-Labs-2024">https://github.com/Arugaf/CS-IU5-Labs-2024</a>).</p>
+<p>Откройте свой удаленный репозиторий на <a href="http://github.com">github.com</a> и убедитесь, что в нем отображаются обе ветки с названиями “main” и “lab_0”, и их содержимое аналогично основному репозиторию (<a href="https://github.com/Fitoliaka/IU5">https://github.com/Fitoliaka/IU5</a>).</p>
 <blockquote>
 <p>В дальнейшем, когда в основном репозитории будут появляться новые ветки, необходимо будет повторять те же самые действия: <code>git pull upstream</code>, <code>git checkout lab_*</code>, <code>git push --set-upstream origin lab_*</code>. Это позволит подхватить из основного репозитория новую ветку с соответствующей лабораторной работой, привязать ее к вашему репозиторию, и отправить ее на ваш удаленный репозиторий на <a href="http://github.com">github.com</a>.</p>
 </blockquote>
