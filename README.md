@@ -4,8 +4,8 @@
 
 
  - Курсы
-	 - [Основы программирования](https://fitoliaka.github.io/IU5-Programming-Basics/)
+	 - [Основы программирования](https://fitoliaka.github.io/IU5/CPP/)
 
-	 - [Программирование сетевых приложений](https://fitoliaka.github.io/IU5-Programming-Basics)
+	 - [Программирование сетевых приложений](https://fitoliaka.github.io/)
 
-	 - [Системное программирование](https://fitoliaka.github.io/IU5-Programming-Basics/)
+	 - [Системное программирование](https://fitoliaka.github.io/)
