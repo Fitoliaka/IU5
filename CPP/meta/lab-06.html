@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>lab-06</title>
+</head>
+<body>
+
+<h1>Лабораторная работа 6</h1>
+<h2>Численное интегрирование функции</h2>
+
+<h3>Цель работы</h3>
+<p>На примере разработки программы для численного интегрирования функции с заданной точностью методом прямоугольников и методом трапеций освоить следующие приемы программирования:</p>
+<ul>
+  <li>передача в функцию параметров «по значению» и «по адресу»;</li>
+  <li>передача в функцию имени функции;</li>
+  <li>передача одномерных массивов в функцию;</li>
+  <li>объединение разнородных данных в структуру;</li>
+  <li>использование массивов из элементов типа структура;</li>
+</ul>
+
+<h3>Задание</h3>
+<ol>
+  <li>Численное интегрирование функции с заданной точностью методом прямоугольников.
+    <p>Вычислить определённый интеграл в пределах от a до b для четырех функций:</p>
+    <ul>
+      <li>f₁(x) = x</li>
+      <li>f₂(x) = sin(22 * x)</li>
+      <li>f₃(x) = x⁴</li>
+      <li>f₄(x) = arctg(x)</li>
+    </ul>
+    <p>Оформить в виде функции <code>IntRect</code>, выполнить расчёты при eps = 0.01, 0.001, 0.0001, 0.00001 и 0.000001.</p>
+    <p>Результаты представить в виде 5 таблиц. Использовать функцию <code>void PrintTabl(resultToPrint* i_prn, int k);</code></p>
+  </li>
+  <li>То же самое с методом трапеций. Оформить в виде функции <code>IntTrap</code>.</li>
+</ol>
+
+<h3>Указания по выполнению работы</h3>
+<p>Алгоритм метода Дарбу-Римана аналогичен методу прямоугольников, но на каждом шаге вычисляются две суммы — верхняя (S2) и нижняя (S1):</p>
+<pre><code>f1 = f(x);         // левая граница
+f2 = f(x + dx);    // правая граница
+
+if (f1 &lt;= f2) {
+    S1 += f1 * dx; // нижняя сумма
+    S2 += f2 * dx; // верхняя сумма
+} else {
+    S2 += f1 * dx;
+    S1 += f2 * dx;
+}
+</code></pre>
+
+<p>Вычисления прекращаются при |S2 - S1| &lt; eps.</p>
+
+<h3>Прототип функции прямоугольников</h3>
+<pre><code>typedef double (*TPF)(double);
+
+double IntRect(TPF f, double a, double b, double eps, int& n);
+</code></pre>
+
+<h3>Прототип функции трапеций</h3>
+<pre><code>double IntTrap(TPF f, double a, double b, double eps, int& n);
+</code></pre>
+
+<h3>Формулы точных интегралов</h3>
+<pre><code>∫ x dx = (b*b - a*a)/2.0
+
+∫ sin(22x) dx = (cos(a*22.0) - cos(b*22.0)) / 22.0
+
+∫ x⁴ dx = (b⁵ - a⁵) / 5.0
+
+∫ arctg(x) dx = b*atan(b) - a*atan(a) - (log(b²+1) - log(a²+1)) / 2.0
+</code></pre>
+
+<h3>Передача массивов в функцию</h3>
+<pre><code>#include &lt;iostream&gt;
+int sum(int *a, int n);
+
+int main() {
+    int n;
+    int a[] = {1,2,3,4,5,6,7,8};
+    n = sizeof(a)/sizeof(int);
+    std::cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; std::endl;
+    std::cout &lt;&lt; sum(a, n) &lt;&lt; std::endl;
+    return 0;
+}
+
+int sum(int* a, int n) {
+    int s = 0;
+    for (int i = 0; i &lt; n; ++i)
+        s += a[i];
+    return s;
+}
+</code></pre>
+
+<h3>Передача функции как параметра</h3>
+<pre><code>#include &lt;iostream&gt;
+
+typedef void (*PF)(int);
+
+void f1(PF pf) {
+    pf(5);
+}
+
+void f(int i) {
+    std::cout &lt;&lt; i &lt;&lt; std::endl;
+}
+
+int main() {
+    f1(f); // выведет 5
+    return 0;
+}
+</code></pre>
+
+<h3>Приложение 2: функция вывода таблицы</h3>
+<pre><code>struct resultToPrint {
+    char* name;
+    double i_sum;
+    double i_toch;
+    int n;
+};
+
+void printTabl(resultToPrint* i_prn, int countRowOfTable) {
+    // ... оформление таблицы с рамками и выравниванием
+}
+</code></pre>
+
+</body>
+</html>
