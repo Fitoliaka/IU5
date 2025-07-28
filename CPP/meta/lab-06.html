@@ -8,6 +8,10 @@
   <title>Lab 06</title>
   <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
 
 <bodyclass="stackedit">
@@ -48,7 +52,7 @@
 <p>Свяжите ветку локального репозитория с вашим удаленным репозиторием:</p>
 <pre><code>git push --set-upstream origin lab_6
 </code></pre>
-<h3>Задание</h3>
+<h2>Задание</h2>
 <ol>
   <li> Численное интегрирование функции с заданной точностью методом прямоугольников.
     <p>Вычислить определённый интеграл в пределах от a до b для четырех функций:</p>
@@ -70,50 +74,78 @@
   <p>Для печати таблиц результатов использовать ту же функцию, что и в методе прямоугольников.</p>
 </ol>
 
-<h3>Указания по выполнению работы</h3>
+<h2>Указания по выполнению работы</h2>
 <p>Алгоритм метода Дарбу-Римана аналогичен методу прямоугольников, но на каждом шаге вычисляются две суммы — верхняя (S2) и нижняя (S1):</p>
-<pre><code>f1 = f(x);         // левая граница
-f2 = f(x + dx);    // правая граница
+<pre><code>
+      f1 = f(x);                    // левая граница
+      f2 = f(x + dx);               // правая граница
 
-if (f1 &lt;= f2) {
-    S1 += f1 * dx; // нижняя сумма
-    S2 += f2 * dx; // верхняя сумма
-} else {
-    S2 += f1 * dx;
-    S1 += f2 * dx;
-}
+      if (f1 &lt;= f2) {
+          S1 += f1 * dx;            // нижняя сумма
+          S2 += f2 * dx;            // верхняя сумма
+      } else {
+          S2 += f1 * dx;
+          S1 += f2 * dx;
+      }
 </code></pre>
 
 <p>Вычисления прекращаются при |S2 - S1| &lt; eps.</p>
+<p>Задача вычисления определенного интеграла в пределах от a до b формулируется следующим образом: вычислить \( \int_{a}^{b} f(x)\,dx \) для подынтегральный функции f(x) при заданных значениях пределов интегрирования <strong>a, b</strong> и требуемой точности <strong>eps</strong> .</p>
+<p>При численном интегрировании площадь под кривой заменяется суммой площадей «элементарных» прямоугольников с высотой, проведенной из середины основания.</p>
+<p>Формула приближенного значения определенного интеграла представляется в виде:</p>
+<pre><code> $$ \sum_{i=1}^{N} f(x_i)Δx $$</code></pre>
+<p>где: <code>xi = a + Δx/2 + (i-1)Δx</code>; N - число элементарных прямоугольников. Для уменьшения объема вычислений множитель Δx следует вынести за знак суммы. Тогда в цикле нужно выполнять только суммирование, а затем полученную сумму один раз умножить на Δx.</p>
+<p>Для оценки погрешности вычисления интеграла на практике используют правило Рунге. Суть правила состоит в том, что выполняют вычисление интеграла с двумя разными шагами изменения переменной х, а затем сравнивают результаты и получают оценку точности. Наиболее часто используемое правило связано с вычислением интеграла дважды: с шагом Δx и шагом Δx/2.</p>
+<p>Для методов прямоугольников и трапеций погрешность RΔx/2 вычисления интеграла с шагом Δx/2 оценивается следующей формулой:</p>
+<p>|R_Δx/2| = | I_Δx/2 − I_Δx| / 3,   (1)</p>
+<p>где IΔx/2 – значение интеграла, вычисленное с шагом Δx/2; IΔx – значение интеграла, вычисленное с шагом Δx.</p>
+<p>В программе вычисления интеграла с точностью eps во внутреннем цикле находят значение определенного интеграла с шагом Δx/2. Во внешнем цикле производится сравнение значений интегралов, вычисленных с шагами Δx и Δx/2 соответственно. Если требуемая точность не достигнута, то число разбиений удваивается, а в качестве предыдущего значения интеграла берут текущее и вычисление интеграла выполняется при новом числе разбиений.</p>
+<p>Вычисление интеграла оформить в виде функции <code>integrationByRectangle</code>, формальными параметрами которой являются:</p>
+<ul>
+  <li>f – имя интегрируемой функции,</li>
+  <li>a, b – границы интервала интегрирования,</li>
+  <li>eps – требуемая точность,</li>
+  <li>n – число прямоугольников, при котором достигнута требуемая точность (выходной).</li>
+</ul>
+<p>Функция возвращает значение интеграла.</p>
+<p>Прототип функции:</p>
+<pre><code>
+  typedef double (*TPF)(double);
+  double integrationByRectangle(TPF f, double a, double b, double eps, int& n);
+</code></pre>
+<p>Здесь:
+TPF – тип указателя на подынтегральную функцию</p>
+<p>Для хранения и печати результатов вычислений используйте структуру, элементами которой являются наименование функции, значения интеграла (точное и вычисленное в виде суммы) и число «элементарных» прямоугольников n, при котором достигнута требуемая точность. Точные значения, полученные аналитически, нужны для оценки правильности результатов численного интегрирования.</p>
+<p>Так как в лабораторной работе требуется выполнять вычисление интеграла для четырех функций, для пяти значений точности для каждой функции и двумя методами, то для сокращения объема программы следует использовать циклы, а для обеспечения возможности реализации циклов обрабатываемые данные нужно хранить в массивах (массив указателей на функции, массив значений точности, массив структур для хранения и печати результатов вычислений).</p>
+<p>Aлгоритм метода трапеций аналогичен алгоритму метода прямоугольников, только площадь элементарной трапеции вычисляется по формуле: Sт=dx*(f(x)+f(x+dx))/2.</p>
+<p>При этом значения функций на границах внутренних отрезков при вычислении интеграла используются дважды, а на границах интервала [a, b] - только один раз.</p>
+<p>Прототип функции трапеций</p>
+<pre><code>double integrationByTrapezoidal(TPF f, double a, double b, double eps, int& n);</code></pre>
 
-<h3>Прототип функции прямоугольников</h3>
-<pre><code>typedef double (*TPF)(double);
+<h2>Формулы точных интегралов</h2>
+<pre><code>
+\( \int_{a}^{b} x\,dx \) = (b*b - a*a)/2.0
 
-double IntRect(TPF f, double a, double b, double eps, int& n);
+\( \int_{a}^{b} sin(22*x)\,dx \) = (cos(a*22.0) - cos(b*22.0)) / 22.0
+
+\( \int_{a}^{b} x⁴\,dx \) = (b⁵ - a⁵) / 5.0
+
+\( \int_{a}^{b} arctg(x)\,dx \) = b*atan(b) - a*atan(a) - (log(b²+1) - log(a²+1)) / 2.0
 </code></pre>
 
-<h3>Прототип функции трапеций</h3>
-<pre><code>double IntTrap(TPF f, double a, double b, double eps, int& n);
-</code></pre>
-
-<h3>Формулы точных интегралов</h3>
-<pre><code>∫ x dx = (b*b - a*a)/2.0
-
-∫ sin(22x) dx = (cos(a*22.0) - cos(b*22.0)) / 22.0
-
-∫ x⁴ dx = (b⁵ - a⁵) / 5.0
-
-∫ arctg(x) dx = b*atan(b) - a*atan(a) - (log(b²+1) - log(a²+1)) / 2.0
-</code></pre>
-
-<h3>Передача массивов в функцию</h3>
+<h2>Примеры передача массивов в функцию</h2>
+<p>Массивы и функции передаются в функцию через указатели.</p>
+<p>Имя массива является указателем на его нулевой элемент. Указатель «ничего не знает» о длине массива и длина массива должна передаваться в функцию как параметр.</p>
+<p>Имя функции указывает на первую команду кода функции.</p>
+<p>
+  Передача одномерных массивов в функцию</p>
 <pre><code>#include &lt;iostream&gt;
-int sum(int *a, int n);
+int sum(int *a, int n);  // В функцию передаются указатель на начало массив(имя массива a) и его размерность(n)
 
 int main() {
     int n;
     int a[] = {1,2,3,4,5,6,7,8};
-    n = sizeof(a)/sizeof(int);
+    n = sizeof(a)/sizeof(int);  // Определение размерности инициализированного массива
     std::cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; std::endl;
     std::cout &lt;&lt; sum(a, n) &lt;&lt; std::endl;
     return 0;
@@ -121,19 +153,27 @@ int main() {
 
 int sum(int* a, int n) {
     int s = 0;
+    int k = sizeof(a); //k – размер указателя (4 байта)
+    std::cout &lt;&lt; " k = " &lt;&lt; k &lt;&lt; std::endl;
     for (int i = 0; i &lt; n; ++i)
         s += a[i];
     return s;
 }
 </code></pre>
 
-<h3>Передача функции как параметра</h3>
-<pre><code>#include &lt;iostream&gt;
+<p>Передача имен функций в качестве параметров</p>
+
+<pre><code>
+/*для удобочитаемости программы определяется новый тип
+(тип пользователя) PF - указатель на функцию, которая имеет
+один параметр типа int и не возвращает никакого значения*/
+
+#include &lt;iostream&gt;
 
 typedef void (*PF)(int);
 
 void f1(PF pf) {
-    pf(5);
+    pf(5);         //вызов функции через указатель
 }
 
 void f(int i) {
@@ -141,22 +181,115 @@ void f(int i) {
 }
 
 int main() {
-    f1(f); // выведет 5
+    f1(f);        // Функция выведет на экран число 5
     return 0;
 }
 </code></pre>
 
-<h3>Приложение 2: функция вывода таблицы</h3>
-<pre><code>struct resultToPrint {
-    char* name;
-    double i_sum;
-    double i_toch;
-    int n;
+<p>Функция f1() получает в качестве параметра указатель типа PF</p>
+
+<h2>Приложение 1:  Пример вывода таблицы результатов</h2>
+
+
+<h2>Приложение 2: функция вывода таблицы</h2>
+<pre><code>
+namespace {
+    const int numberOfTableColumns = 4;
+    const int maxWidthOfTableColumns = 18;
+
+    const int firstColumnWidth = 12;
+    const int secondColumnWidth = 18;
+    const int thirdColumnWidth = 18;
+    const int fourthColumnWidth = 10;
+
+   // Символы рамки в UTF-8
+	  const char* ul = "┌"; // верхний левый угол		char(218)
+    const char* ur = "┐"; // верхний правый угол	char(191)
+    const char* dl = "└"; // нижний левый угол		char(192)
+    const char* dr = "┘"; // нижний правый угол		char(217)
+    //const std::string hz = u8"─"; // горизонтальная линия	char(196)
+    const char* vt = "│"; // вертикальная линия		char(179)
+	  const char* cr = "┼"; // перекрестие			char(194)
+	  const char* Td = "┬"; // Т-образный вниз		char(197)
+	  const char* Tu = "┴"; // Т-образный вверх		char(193)
+	  const char* Tr = "├"; // Т-образный вправо		char(195)
+	  const char* Tl = "┤"; // Т-образный влево		char(180)
+}
+
+struct resultToPrint {
+    char* name;      // название функции
+    double i_sum;    // численно рассчитанный интеграл
+    double i_toch;   // точное значение интеграла
+    int n;           // число разбиений при достижении точности
 };
 
-void printTabl(resultToPrint* i_prn, int countRowOfTable) {
-    // ... оформление таблицы с рамками и выравниванием
+void printTabl(resultToPrint* i_prn, int countRowOfTable)
+{
+    int widthOfTableColumns[numberOfTableColumns] = {
+        firstColumnWidth, secondColumnWidth,
+        thirdColumnWidth, fourthColumnWidth
+    };
+
+    char* title[numberOfTableColumns];
+    title[0] = new char [std::strlen("  Function  ") + 1];
+    std::strcpy(title[0], "  Function  ");
+    title[1] = new char [std::strlen("     Integral     ") + 1];
+    std::strcpy(title[1], "     Integral     ");
+    title[2] = new char [std::strlen("      IntSum      ") + 1];
+    std::strcpy(title[2], "      IntSum      ");
+    title[3] = new char [std::strlen("    N     ") + 1];
+    std::strcpy(title[3], "    N     ");
+
+    int size[numberOfTableColumns];
+    for(int i = 0; i < numberOfTableColumns; ++i)
+        size[i] = std::strlen(title[i]);
+
+    // Верхняя рамка
+    std::cout << ul << std::setfill('-');
+    for(int j = 0; j < numberOfTableColumns - 1; ++j)
+        std::cout << std::setw(widthOfTableColumns[j] + 3) << Td;
+    std::cout << std::setw(widthOfTableColumns[numberOfTableColumns - 1] + 3) << ur << std::endl;
+
+    // Заголовки
+    std::cout << vt;
+    for(int j = 0; j < numberOfTableColumns; ++j)
+        std::cout << title[j] << vt;
+    std::cout << std::endl;
+
+    // Тело таблицы
+    for(int i = 0; i < countRowOfTable; ++i)
+    {
+        std::cout << Tr << std::setfill('-');
+        for(int j = 0; j < numberOfTableColumns - 1; ++j)
+            std::cout << std::setw(widthOfTableColumns[j] + 3) << cr;
+        std::cout << std::setw(widthOfTableColumns[numberOfTableColumns - 1] + 3)
+                  << Tl << std::setfill(' ') << std::endl;
+
+        std::cout << vt
+                  << std::setw((widthOfTableColumns[0] - std::strlen(i_prn[i].name)) / 2) << ' '
+                  << i_prn[i].name
+                  << std::setw((widthOfTableColumns[0] - std::strlen(i_prn[i].name)) / 2) << vt;
+
+        std::cout << std::setw(widthOfTableColumns[1]) << std::setprecision(6)
+                  << i_prn[i].i_toch << vt
+                  << std::setw(widthOfTableColumns[2])
+                  << i_prn[i].i_sum << vt
+                  << std::setw(widthOfTableColumns[3])
+                  << i_prn[i].n << vt << std::endl;
+    }
+
+    // Нижняя рамка
+    std::cout << dl << std::setfill('-');
+    for(int j = 0; j < numberOfTableColumns - 1; ++j)
+        std::cout << std::setw(widthOfTableColumns[j] + 3) << Tu;
+    std::cout << std::setw(widthOfTableColumns[numberOfTableColumns - 1] + 3)
+              << dr << std::setfill(' ') << std::endl;
+
+   // Освобождение памяти
+    for (int i = 0; i < numberOfTableColumns; ++i)
+        delete[] title[i];
 }
+
 </code></pre>
 
 </body>
