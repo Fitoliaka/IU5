@@ -16,6 +16,7 @@ https://fitoliaka.github.io/IU5/CPP/
 	 - [Лабораторная работа 4](https://fitoliaka.github.io/IU5/CPP/meta/lab-04.html)
 	 - [Лабораторная работа 5](https://fitoliaka.github.io/IU5/CPP/meta/lab-05.html)
 	 - [Лабораторная работа 6](https://fitoliaka.github.io/IU5/CPP/meta/lab-06.html)
+	 - [Лабораторная работа 7](https://fitoliaka.github.io/IU5/CPP/meta/lab-07.html)
  - [Style Guide](ttps://fitoliaka.github.iohttps://fitoliaka.github.io/IU5/CPP/Style%20Guide.html)
  - [Правила сдачи лабораторных работ](https://fitoliaka.github.iohttps://fitoliaka.github.io/IU5/CPP/rules.html)
 
