@@ -6,6 +6,6 @@
  - Курсы
 	 - [Основы программирования](https://fitoliaka.github.io/IU5/CPP/)
 
-	 - [Программирование сетевых приложений](https://fitoliaka.github.io/)
+	 - [Программирование сетевых приложений](https://fitoliaka.github.io/IU5/PNA)
 
-	 - [Системное программирование](https://fitoliaka.github.io/)
+	 - [Системное программирование](https://fitoliaka.github.io/IU5/SP/)
