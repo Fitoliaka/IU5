@@ -1,22 +1,42 @@
-on: push
+name: CI
+
+on:
+  push:
+    branches: [ main, lab_3 ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - run: g++ -std=c++20 -Wall -Wextra -Werror -Wpedantic *.cpp
+    - uses: actions/checkout@v4
+
+    - name: Compile
+      run: |
+        g++ -std=c++20 -Wall -Wextra -Werror -Wpedantic main.cpp lab3_app.cpp -o lab3
 
   clang-format:
     runs-on: ubuntu-latest
-    container: ghcr.io/cpp-linter/clang-tools:18
+
     steps:
     - uses: actions/checkout@v4
-    - run: find . -iname "*.hpp" -o -iname "*.h" | xargs clang-format --dry-run -Werror *.cpp
+
+    - name: clang-format check
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-format
+        find . -name '*.cpp' -o -name '*.hpp' -o -name '*.h' | xargs clang-format --dry-run -Werror
 
   clang-tidy:
     runs-on: ubuntu-latest
-    container: ghcr.io/cpp-linter/clang-tools:18
+
     steps:
     - uses: actions/checkout@v4
-    - run: clang-tidy -extra-arg=-std=c++20 *.cpp
+
+    - name: clang-tidy
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-tidy
+        clang-tidy main.cpp lab3_app.cpp -- -std=c++20
