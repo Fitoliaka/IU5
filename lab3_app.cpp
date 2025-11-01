@@ -1,277 +1,343 @@
-#include <iostream>
+#include "lab3_app.hpp"
 #include <cmath>
 #include <iomanip>
-#include "lab3_app.hpp"
+#include <iostream>
+#include <limits>
 
-namespace lab_3 {
+namespace NonlinearSolver {
 
-namespace {
-    const int maxIterations = 100000;
-    const double derivativeEpsilon = 1e-12;
-    const double defaultCoefficient = 1.0;
-    const int precisionValue = 10;
+// Константы
+const int MAXITER = 100000;
+const double MINEPS = 1e-15;
+const int MINPRECISION = 1;
+const int MAXPRECISION = 15;
+const double DEFAULTCOEF = 1.0;
+const int DEFAULT_DIGITS = 6;
+const double HALF_DIVISOR = 2.0;
 
-    double targetFunction(double x, double coefficient = defaultCoefficient) {
-        return x - coefficient * std::cos(x);
+[[nodiscard]] double func(double x, double coef) {
+    return x - coef * std::cos(x);
+}
+
+[[nodiscard]] double dfunc(double x, double coef) {
+    return 1.0 + coef * std::sin(x);
+}
+
+[[nodiscard]] double gfunc(double x, double coef) {
+    return coef * std::cos(x);
+}
+
+[[nodiscard]] double funcTask4(double x) {
+    return std::tan(x / 2.0) - x;
+}
+
+[[nodiscard]] double dfuncTask4(double x) {
+    return (1.0 / (2.0 * std::cos(x / 2.0) * std::cos(x / 2.0))) - 1.0;
+}
+
+[[nodiscard]] double gfuncTask4(double x) {
+    return std::tan(x / 2.0);
+}
+
+[[nodiscard]] int countDigits(double eps) {
+    if (eps <= 0.0) {
+        return DEFAULT_DIGITS;
     }
 
-    double targetFunctionDerivative(double x, double coefficient = defaultCoefficient) {
-        return 1 + coefficient * std::sin(x);
+    double logeps = std::log10(eps);
+    int digits = static_cast<int>(std::ceil(-logeps));
+
+    if (digits < MINPRECISION) {
+        digits = MINPRECISION;
+    }
+    if (digits > MAXPRECISION) {
+        digits = MAXPRECISION;
     }
 
-    double iterationTransform(double x, double coefficient = defaultCoefficient) {
-        return coefficient * std::cos(x);
-    }
+    return digits;
+}
 
-    void printResult(double root, int iterations, const std::string& method, double coefficient) {
-        std::cout << "\n" << method << " метод (коэффициент = " << coefficient << "):" << std::endl;
-        std::cout << "Корень: " << std::fixed << std::setprecision(precisionValue) << root << std::endl;
-        std::cout << "Количество итераций: " << iterations << std::endl;
-        std::cout << "Проверка (f(x) = x - " << coefficient << "*cos(x)): "
-                  << targetFunction(root, coefficient) << std::endl;
-    }
+void printResult(double root, int iter, double eps) {
+    int prec = countDigits(eps);
 
-    void getUserParameters(double& coefficient, double& epsilon) {
-        std::cout << "Введите коэффициент при cos(x): ";
-        std::cin >> coefficient;
-        std::cout << "Введите точность epsilon (например, 1e-6): ";
-        std::cin >> epsilon;
-    }
+    std::cout << std::fixed << std::setprecision(prec);
+    std::cout << "Найденный корень: " << root << std::endl;
+    std::cout << "Количество итераций: " << iter << std::endl;
+    std::cout << "Точность: " << eps << std::endl;
+    std::cout << "Значение функции: f(" << root << ") = " << func(root, 1.0) << std::endl;
+    std::cout << "----------------------------------------" << std::endl;
+
+    std::cout << std::defaultfloat;
+}
+
+void printResultTask4(double root, int iter, double eps, const std::string& method) {
+    int prec = countDigits(eps);
+
+    std::cout << std::fixed << std::setprecision(prec);
+    std::cout << "Метод: " << method << std::endl;
+    std::cout << "Найденный корень: " << root << std::endl;
+    std::cout << "Количество итераций: " << iter << std::endl;
+    std::cout << "Точность: " << eps << std::endl;
+    std::cout << "Значение функции: f(" << root << ") = " << funcTask4(root) << std::endl;
+    std::cout << "----------------------------------------" << std::endl;
+
+    std::cout << std::defaultfloat;
+}
+
+[[nodiscard]] double getEps() {
+    double eps = 0.001;  // инициализация
+    std::cout << "Введите точность (например 0.001 или 1e-6): ";
+    std::cin >> eps;
+    return eps;
+}
+
+[[nodiscard]] double getCoef() {
+    double coef = 1.0;  // инициализация
+    std::cout << "Введите коэффициент при cos(x): ";
+    std::cin >> coef;
+    return coef;
 }
 
 bool shouldContinue() {
-    char answer;
-    std::cout << "\nПродолжить работу? (y/n): ";
-    std::cin >> answer;
-    std::cin.ignore(100, '\n');
-    return (answer == 'y' || answer == 'Y');
-}
-
-MenuOption displayMenu() {
-    int choice;
-    std::cout << "\n=== Лабораторная работа 3 ===" << std::endl;
-    std::cout << "Уравнение: x - k*cos(x) = 0" << std::endl;
-    std::cout << static_cast<int>(MenuOption::BISECTION_METHOD) << " - Метод половинного деления" << std::endl;
-    std::cout << static_cast<int>(MenuOption::NEWTON_METHOD) << " - Метод Ньютона" << std::endl;
-    std::cout << static_cast<int>(MenuOption::ITERATION_METHOD) << " - Метод простой итерации" << std::endl;
-    std::cout << static_cast<int>(MenuOption::COMBINED_METHOD) << " - Комбинированный метод" << std::endl;
-    std::cout << static_cast<int>(MenuOption::EXIT) << " - Выход" << std::endl;
-    std::cout << "Выберите опцию: ";
+    char choice = 'n';  // инициализация
+    std::cout << "Продолжить работу? (y/n): ";
     std::cin >> choice;
-    std::cin.ignore(100, '\n');
-    return static_cast<MenuOption>(choice);
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return choice == 'y';
 }
 
-void runApplication() {
-    bool running = true;
-
-    while (running) {
-        const MenuOption choice = displayMenu();
-
-        if (choice == MenuOption::EXIT) {
-            running = false;
-        } else {
-            executeTask(choice);
-            if (choice != MenuOption::EXIT) {
-                running = shouldContinue();
-            }
-        }
-    }
-
-    std::cout << "Программа завершена." << std::endl;
-}
-
-void executeTask(MenuOption option) {
-    switch (option) {
-        case MenuOption::BISECTION_METHOD:
-            bisectionMethod();
-            break;
-        case MenuOption::NEWTON_METHOD:
-            newtonMethod();
-            break;
-        case MenuOption::ITERATION_METHOD:
-            iterationMethod();
-            break;
-        case MenuOption::COMBINED_METHOD:
-            combinedMethod();
-            break;
-        default:
-            std::cout << "Неверный выбор!" << std::endl;
-    }
-}
-
-void bisectionMethod() {
-    double a, b, coefficient, epsilon;
-
-    std::cout << "\n=== Метод половинного деления ===" << std::endl;
-    std::cout << "Введите левую границу a: ";
-    std::cin >> a;
-    std::cout << "Введите правую границу b: ";
-    std::cin >> b;
-    getUserParameters(coefficient, epsilon);
-
-    double fa = targetFunction(a, coefficient);
-    double fb = targetFunction(b, coefficient);
-
-    if (fa * fb >= 0) {
-        std::cout << "Ошибка: функция должна иметь разные знаки на концах отрезка!" << std::endl;
-        std::cout << "f(a) = " << fa << std::endl;
-        std::cout << "f(b) = " << fb << std::endl;
-        return;
-    }
-
-    double root = a;
-    int iterations = 0;
-
-    while ((b - a) >= epsilon && iterations < maxIterations) {
-        root = (a + b) / 2;
-        double froot = targetFunction(root, coefficient);
-
-        if (std::abs(froot) < epsilon) {
-            break;
-        } else if (froot * fa < 0) {
-            b = root;
-            fb = froot;
-        } else {
-            a = root;
-            fa = froot;
-        }
-        iterations++;
-    }
-
-    if (iterations >= maxIterations) {
-        std::cout << "Достигнуто максимальное количество итераций!" << std::endl;
-    }
-
-    printResult(root, iterations, "Половинного деления", coefficient);
-}
-
-void newtonMethod() {
-    double x0, coefficient, epsilon;
-
-    std::cout << "\n=== Метод Ньютона ===" << std::endl;
-    std::cout << "Введите начальное приближение x0: ";
-    std::cin >> x0;
-    getUserParameters(coefficient, epsilon);
-
-    double x = x0;
-    double xprev;
-    int iterations = 0;
-
-    do {
-        xprev = x;
-        double fx = targetFunction(xprev, coefficient);
-        double dfx = targetFunctionDerivative(xprev, coefficient);
-
-        if (std::abs(dfx) < derivativeEpsilon) {
-            std::cout << "Ошибка: производная близка к нулю!" << std::endl;
-            return;
-        }
-
-        x = xprev - fx / dfx;
-        iterations++;
-
-    } while (std::abs(x - xprev) >= epsilon && iterations < maxIterations);
-
-    if (iterations >= maxIterations) {
-        std::cout << "Достигнуто максимальное количество итераций!" << std::endl;
-    }
-
-    printResult(x, iterations, "Ньютона", coefficient);
+void showMenu() {
+    std::cout << "\n=== РЕШЕНИЕ НЕЛИНЕЙНЫХ УРАВНЕНИЙ ===" << std::endl;
+    std::cout << "1. Метод простых итераций" << std::endl;
+    std::cout << "2. Метод половинного деления" << std::endl;
+    std::cout << "3. Метод Ньютона" << std::endl;
+    std::cout << "4. Дополнительное задание (tg(x/2) - x = 0)" << std::endl;
+    std::cout << "0. Выход" << std::endl;
+    std::cout << "Выберите метод: ";
 }
 
 void iterationMethod() {
-    double x0, coefficient, epsilon;
+    std::cout << "\n=== МЕТОД ПРОСТЫХ ИТЕРАЦИЙ ===" << std::endl;
+    std::cout << "Уравнение: x - k*cos(x) = 0" << std::endl;
 
-    std::cout << "\n=== Метод простой итерации ===" << std::endl;
-    std::cout << "Введите начальное приближение x0: ";
+    double eps = getEps();
+    double coef = getCoef();
+
+    double x0 = 0.0;  // инициализация
+    std::cout << "Введите начальное приближение: ";
     std::cin >> x0;
-    getUserParameters(coefficient, epsilon);
 
+    int iter = 0;
     double x = x0;
-    double xprev;
-    int iterations = 0;
+    double xold = x0;  // инициализация
 
     do {
-        xprev = x;
-        x = iterationTransform(xprev, coefficient);
-        iterations++;
+        xold = x;
+        x = gfunc(xold, coef);
+        iter++;
 
-    } while (std::abs(x - xprev) >= epsilon && iterations < maxIterations);
+        if (iter > MAXITER) {
+            std::cout << "Слишком много итераций!" << std::endl;
+            return;
+        }
+    } while (std::abs(x - xold) > eps);
 
-    if (iterations >= maxIterations) {
-        std::cout << "Достигнуто максимальное количество итераций!" << std::endl;
-    }
-
-    printResult(x, iterations, "Простой итерации", coefficient);
+    printResult(x, iter, eps);
 }
 
-void combinedMethod() {
-    double a, b, coefficient, epsilon;
-
-    std::cout << "\n=== Комбинированный метод (хорд и Ньютона) ===" << std::endl;
+void bisectionMethod() {
+    std::cout << "\n=== МЕТОД ПОЛОВИННОГО ДЕЛЕНИЯ ===" << std::endl;
     std::cout << "Уравнение: x - k*cos(x) = 0" << std::endl;
-    std::cout << "Введите левую границу a: ";
+
+    double eps = getEps();
+    double coef = getCoef();
+
+    double a = 0.0, b = 0.0;  // инициализация
+    std::cout << "Введите левый конец интервала: ";
     std::cin >> a;
-    std::cout << "Введите правую границу b: ";
+    std::cout << "Введите правый конец интервала: ";
     std::cin >> b;
-    getUserParameters(coefficient, epsilon);
 
-    double fa = targetFunction(a, coefficient);
-    double fb = targetFunction(b, coefficient);
+    double fa = func(a, coef);
+    double fb = func(b, coef);
 
-    if (fa * fb >= 0) {
-        std::cout << "Ошибка: функция должна иметь разные знаки на концах отрезка!" << std::endl;
-        std::cout << "f(a) = " << fa << std::endl;
-        std::cout << "f(b) = " << fb << std::endl;
+    if (fa * fb > 0.0) {
+        std::cout << "Ошибка: f(a) и f(b) должны быть разных знаков!" << std::endl;
+        std::cout << "f(" << a << ") = " << fa << std::endl;
+        std::cout << "f(" << b << ") = " << fb << std::endl;
         return;
     }
 
-    double xchord, xnewton, root;
-    int iterations = 0;
+    int iter = 0;
+    double root = (a + b) / HALF_DIVISOR;  // инициализация
 
-    std::cout << "\nИтерационный процесс:" << std::endl;
-    std::cout << std::setw(3) << "i" << std::setw(12) << "a" << std::setw(12) << "b"
-              << std::setw(15) << "xchord" << std::setw(15) << "xnewton" << std::endl;
+    while ((b - a) > eps && iter < MAXITER) {
+        root = (a + b) / HALF_DIVISOR;
+        iter++;
 
-    while ((b - a) >= epsilon && iterations < maxIterations) {
-        xchord = a - fa * (b - a) / (fb - fa);
-
-        double x0newton;
-        if (std::abs(targetFunctionDerivative(a, coefficient)) > derivativeEpsilon) {
-            x0newton = a;
-        } else {
-            x0newton = b;
-        }
-        xnewton = x0newton - targetFunction(x0newton, coefficient) / targetFunctionDerivative(x0newton, coefficient);
-
-        std::cout << std::setw(3) << iterations << std::fixed << std::setprecision(6)
-                  << std::setw(12) << a << std::setw(12) << b
-                  << std::setw(15) << xchord << std::setw(15) << xnewton << std::endl;
-
-        if (fa * targetFunction(xchord, coefficient) < 0) {
-            b = xchord;
-            fb = targetFunction(b, coefficient);
-        } else {
-            a = xnewton;
-            fa = targetFunction(a, coefficient);
-        }
-
-        root = (a + b) / 2;
-        iterations++;
-
-        if (std::abs(targetFunction(root, coefficient)) < epsilon) {
+        if (std::abs(func(root, coef)) < eps) {
             break;
         }
+
+        if (func(a, coef) * func(root, coef) < 0.0) {
+            b = root;
+        } else {
+            a = root;
+        }
     }
 
-    if (iterations >= maxIterations) {
-        std::cout << "Достигнуто максимальное количество итераций!" << std::endl;
-    }
+    printResult(root, iter, eps);
+}
 
-    printResult(root, iterations, "Комбинированный", coefficient);
-    std::cout << "Финальный отрезок: [" << a << ", " << b << "]" << std::endl;
-    std::cout << "Длина отрезка: " << (b - a) << std::endl;
+void newtonMethod() {
+    std::cout << "\n=== МЕТОД НЬЮТОНА ===" << std::endl;
+    std::cout << "Уравнение: x - k*cos(x) = 0" << std::endl;
+
+    double eps = getEps();
+    double coef = getCoef();
+
+    double x0 = 0.0;  // инициализация
+    std::cout << "Введите начальное приближение: ";
+    std::cin >> x0;
+
+    int iter = 0;
+    double x = x0;
+    double xold = x0;  // инициализация
+
+    do {
+        xold = x;
+        double fx = func(xold, coef);
+        double dfx = dfunc(xold, coef);
+
+        if (std::abs(dfx) < MINEPS) {
+            std::cout << "Ошибка: производная слишком мала!" << std::endl;
+            return;
+        }
+
+        x = xold - fx / dfx;
+        iter++;
+
+        if (iter > MAXITER) {
+            std::cout << "Слишком много итераций!" << std::endl;
+            return;
+        }
+    } while (std::abs(x - xold) > eps);
+
+    printResult(x, iter, eps);
+}
+
+void additionalTask() {
+    std::cout << "\n=== ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ ===" << std::endl;
+    std::cout << "Уравнение: tg(x/2) - x = 0" << std::endl;
+    std::cout << "Начальные приближения: -2.3, 0, 2.3" << std::endl;
+
+    double eps = getEps();
+
+    int choice = 0;  // инициализация
+    std::cout << "\nВыберите метод для дополнительного задания:" << std::endl;
+    std::cout << "1. Метод итераций" << std::endl;
+    std::cout << "2. Метод касательных (Ньютона)" << std::endl;
+    std::cout << "Выберите метод: ";
+    std::cin >> choice;
+
+    if (choice == 1) {
+        std::cout << "\n=== МЕТОД ИТЕРАЦИЙ (tg(x/2) - x = 0) ===" << std::endl;
+
+        double x0 = 0.0;  // инициализация
+        std::cout << "Введите начальное приближение (-2.3, 0, 2.3): ";
+        std::cin >> x0;
+
+        int iter = 0;
+        double x = x0;
+        double xold = x0;  // инициализация
+
+        do {
+            xold = x;
+            x = gfuncTask4(xold);
+            iter++;
+
+            if (iter > MAXITER) {
+                std::cout << "Слишком много итераций!" << std::endl;
+                return;
+            }
+        } while (std::abs(x - xold) > eps);
+
+        printResultTask4(x, iter, eps, "Метод итераций");
+
+    } else if (choice == 2) {
+        std::cout << "\n=== МЕТОД КАСАТЕЛЬНЫХ (tg(x/2) - x = 0) ===" << std::endl;
+
+        double x0 = 0.0;  // инициализация
+        std::cout << "Введите начальное приближение (-2.3, 0, 2.3): ";
+        std::cin >> x0;
+
+        int iter = 0;
+        double x = x0;
+        double xold = x0;  // инициализация
+
+        do {
+            xold = x;
+            double fx = funcTask4(xold);
+            double dfx = dfuncTask4(xold);
+
+            if (std::abs(dfx) < MINEPS) {
+                std::cout << "Ошибка: производная слишком мала!" << std::endl;
+                return;
+            }
+
+            x = xold - fx / dfx;
+            iter++;
+
+            if (iter > MAXITER) {
+                std::cout << "Слишком много итераций!" << std::endl;
+                return;
+            }
+        } while (std::abs(x - xold) > eps);
+
+        printResultTask4(x, iter, eps, "Метод касательных");
+
+    } else {
+        std::cout << "Неверный выбор метода!" << std::endl;
+    }
+}
+
+void runProgram() {
+    std::cout << "=== ПРОГРАММА ДЛЯ РЕШЕНИЯ УРАВНЕНИЙ ===" << std::endl;
+
+    do {
+        showMenu();
+
+        int choice = 0;  // инициализация
+        std::cin >> choice;
+
+        MenuOption option = static_cast<MenuOption>(choice);
+
+        switch (option) {
+            case MenuOption::ITERATION_METHOD:
+                iterationMethod();
+                break;
+            case MenuOption::BISECTION_METHOD:
+                bisectionMethod();
+                break;
+            case MenuOption::NEWTON_METHOD:
+                newtonMethod();
+                break;
+            case MenuOption::ADDITIONAL_TASK:
+                additionalTask();
+                break;
+            case MenuOption::EXIT:
+                std::cout << "Выход из программы" << std::endl;
+                return;
+            default:
+                std::cout << "Неверный выбор!" << std::endl;
+                break;
+        }
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    } while (shouldContinue());
+
+    std::cout << "Программа завершена" << std::endl;
 }
 
 }
