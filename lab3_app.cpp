@@ -340,4 +340,4 @@ void runProgram() {
     std::cout << "Программа завершена" << std::endl;
 }
 
-}
+}  // namespace NonlinearSolver
