@@ -19,6 +19,6 @@ void bisectionMethod();
 void newtonMethod();
 void additionalTask();
 
-}
+}  // namespace NonlinearSolver
 
 #endif
