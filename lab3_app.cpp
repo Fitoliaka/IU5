@@ -6,7 +6,6 @@
 
 namespace NonlinearSolver {
 
-// Константы
 const int MAXITER = 100000;
 const double MINEPS = 1e-15;
 const int MINPRECISION = 1;
@@ -88,21 +87,21 @@ void printResultTask4(double root, int iter, double eps,
 }
 
 [[nodiscard]] double getEps() {
-  double eps = 0.001; // инициализация
+  double eps = 0.001;
     std::cout << "Введите точность (например 0.001 или 1e-6): ";
     std::cin >> eps;
     return eps;
 }
 
 [[nodiscard]] double getCoef() {
-  double coef = 1.0; // инициализация
+  double coef = 1.0;
     std::cout << "Введите коэффициент при cos(x): ";
     std::cin >> coef;
     return coef;
 }
 
 bool shouldContinue() {
-  char choice = 'n'; // инициализация
+  char choice = 'n';
     std::cout << "Продолжить работу? (y/n): ";
     std::cin >> choice;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -126,13 +125,13 @@ void iterationMethod() {
     double eps = getEps();
     double coef = getCoef();
 
-  double x0 = 0.0; // инициализация
+  double x0 = 0.0;
     std::cout << "Введите начальное приближение: ";
     std::cin >> x0;
 
     int iter = 0;
     double x = x0;
-  double xold = x0; // инициализация
+  double xold = x0;
 
     do {
         xold = x;
@@ -155,7 +154,7 @@ void bisectionMethod() {
     double eps = getEps();
     double coef = getCoef();
 
-  double a = 0.0, b = 0.0; // инициализация
+  double a = 0.0, b = 0.0;
     std::cout << "Введите левый конец интервала: ";
     std::cin >> a;
     std::cout << "Введите правый конец интервала: ";
@@ -172,7 +171,7 @@ void bisectionMethod() {
     }
 
     int iter = 0;
-  double root = (a + b) / HALF_DIVISOR; // инициализация
+  double root = (a + b) / HALF_DIVISOR;
 
     while ((b - a) > eps && iter < MAXITER) {
         root = (a + b) / HALF_DIVISOR;
@@ -199,13 +198,13 @@ void newtonMethod() {
     double eps = getEps();
     double coef = getCoef();
 
-  double x0 = 0.0; // инициализация
+  double x0 = 0.0;
     std::cout << "Введите начальное приближение: ";
     std::cin >> x0;
 
     int iter = 0;
     double x = x0;
-  double xold = x0; // инициализация
+  double xold = x0;
 
     do {
         xold = x;
@@ -236,7 +235,7 @@ void additionalTask() {
 
     double eps = getEps();
 
-  int choice = 0; // инициализация
+  int choice = 0;
     std::cout << "\nВыберите метод для дополнительного задания:" << std::endl;
     std::cout << "1. Метод итераций" << std::endl;
     std::cout << "2. Метод касательных (Ньютона)" << std::endl;
@@ -246,13 +245,13 @@ void additionalTask() {
     if (choice == 1) {
         std::cout << "\n=== МЕТОД ИТЕРАЦИЙ (tg(x/2) - x = 0) ===" << std::endl;
 
-    double x0 = 0.0; // инициализация
+    double x0 = 0.0;
         std::cout << "Введите начальное приближение (-2.3, 0, 2.3): ";
         std::cin >> x0;
 
         int iter = 0;
         double x = x0;
-    double xold = x0; // инициализация
+    double xold = x0;
 
         do {
             xold = x;
@@ -270,13 +269,13 @@ void additionalTask() {
     } else if (choice == 2) {
         std::cout << "\n=== МЕТОД КАСАТЕЛЬНЫХ (tg(x/2) - x = 0) ===" << std::endl;
 
-    double x0 = 0.0; // инициализация
+    double x0 = 0.0;
         std::cout << "Введите начальное приближение (-2.3, 0, 2.3): ";
         std::cin >> x0;
 
         int iter = 0;
         double x = x0;
-    double xold = x0; // инициализация
+    double xold = x0;
 
         do {
             xold = x;
@@ -310,7 +309,7 @@ void runProgram() {
     do {
         showMenu();
 
-    int choice = 0; // инициализация
+    int choice = 0;
         std::cin >> choice;
 
         MenuOption option = static_cast<MenuOption>(choice);
@@ -343,4 +342,4 @@ void runProgram() {
     std::cout << "Программа завершена" << std::endl;
 }
 
-} // namespace NonlinearSolver
+}
