@@ -4,11 +4,11 @@
 namespace NonlinearSolver {
 
 enum class MenuOption {
-    ITERATION_METHOD = 1,
-    BISECTION_METHOD,
-    NEWTON_METHOD,
-    ADDITIONAL_TASK,
-    EXIT = 0
+  ITERATION_METHOD = 1,
+  BISECTION_METHOD,
+  NEWTON_METHOD,
+  ADDITIONAL_TASK,
+  EXIT = 0
 };
 
 bool shouldContinue();
@@ -19,6 +19,6 @@ void bisectionMethod();
 void newtonMethod();
 void additionalTask();
 
-}  // namespace NonlinearSolver
+} // namespace NonlinearSolver
 
 #endif
