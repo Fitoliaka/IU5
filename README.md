@@ -180,13 +180,14 @@ double integrationByTrapezoidal(TPF f, double a, double b, double eps, int& n);
 
 ### Формулы для вычисления точных значений интеграла
 
-- $\displaystyle \int_{a}^{b} x\,dx = \frac{b^2 - a^2}{2.0}$
+- $\displaystyle \int_{a}^{b} x\ dx = \frac{b^2 - a^2}{2}$
 
-- $\displaystyle \int_{a}^{b} \sin(22x)\,dx = \frac{\cos(22a) - \cos(22b)}{22.0}$
+- $\displaystyle \int_{a}^{b} \sin(22x)\ dx = \frac{\cos(22a) - \cos(22b)}{22}$
 
-- $\displaystyle \int_{a}^{b} x^4\,dx = \frac{b^5 - a^5}{5.0}$
+- $\displaystyle \int_{a}^{b} x^4\ dx = \frac{b^5 - a^5}{5}$
 
-- $\displaystyle \int_{a}^{b} \operatorname{arctg}(x)\,dx = b\arctan(b) - a\arctan(a) - \frac{\ln(b^2+1) - \ln(a^2+1)}{2.0}$
+- $\displaystyle \int_{a}^{b} \arctan(x)\ dx = b\arctan(b) - a\arctan(a) - \frac{\ln(b^2+1) - \ln(a^2+1)}{2}$
+
 
 ## Приложение 1: Пример вывода таблицы результатов
 
