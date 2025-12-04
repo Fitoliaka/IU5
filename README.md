@@ -118,19 +118,20 @@ $\quad y = 1 - \dfrac{x^2}{2!} +\dfrac{x^4}{4!} - \dfrac{x^6}{6!} + ... + (-1)^n
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
 Значение `a` вводится с клавиатуры;
 
-3. Вычислите значения суммы ряда: $\quad S(x) = x + \dfrac{x^2}{2!} + ... + \dfrac{x^{2n}}{(2n)!}\quad\\[1em]$
+3. Вычислите значения суммы ряда: $\quad S(x) = x + \dfrac{x^2}{2!} + ... + \dfrac{x^{2n}}{(2n)!}\quad $
 и функции $Y(x) =\dfrac{e^x-e^{-x}}{2}\;$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
-$\quad y = 1 + \dfrac{x \;\ln a}{1!} + \dfrac{(x \;\ln a)^{2}}{2!} + ... + \dfrac{(x \;\ln a)^{n}}{n!} \;.\quad$
+$\quad y = 1 + \dfrac{x \ln a}{1!} + \dfrac{(x \ln a)^{2}}{2!} + ... + \dfrac{(x \;\ln a)^{n}}{n!} .\quad$
 Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 3
@@ -142,14 +143,15 @@ $\quad y = 1 + \dfrac{x \;\ln a}{1!} + \dfrac{(x \;\ln a)^{2}}{2!} + ... + \dfra
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
 Значение `a` вводится с клавиатуры;
 
-3. Вычислите значения суммы ряда: $\quad S(x) = 1 + \dfrac{\cos\!\left(\frac{\pi}{4}\right)}{0!}x + ... + \dfrac{\cos\!\left(\frac{\pi}{4}\right)}{n!}x^{n-1}\quad$
+3. Вычислите значения суммы ряда: $\quad S(x) = 1 + \dfrac{\cos\ \left(\frac{\pi}{4}\right)}{0!}x + ... + \dfrac{\cos\!\left(\frac{\pi}{4}\right)}{n!}x^{n-1}\quad$
 и функции $Y(x) =1+x\cdot e \cdot\cos\!\left(\frac{\pi}{4}\right)\;$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
@@ -166,8 +168,9 @@ $\quad y = x - \dfrac{x^2}{2} +\dfrac{x^3}{3} - \dfrac{x^4}{4} + ... + (-1)^{(n+
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -190,8 +193,9 @@ $\quad y =\dfrac{1}{2+\dfrac{1}{4 +\dfrac{1}{6 + ... + \dfrac{1}{2n}}}} \; .\qua
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -214,8 +218,9 @@ $\quad y =\dfrac{1}{3 + \dfrac{1}{5 + \dfrac{1}{7 + ... + \dfrac{1}{(2n+1)}}}} \
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -238,8 +243,9 @@ $\quad y = 1 - \dfrac{x^2}{1\cdot2} +\dfrac{x^3}{2\cdot4} - \dfrac{x^4}{3\cdot8}
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -262,8 +268,9 @@ $\quad y = \sqrt{1 + \sqrt{3 + \sqrt{5 + ... + \sqrt{(2n+1)}}}} \;.\quad$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -286,8 +293,9 @@ $\quad y = 1 - \dfrac{3}{2}\cdot x +\dfrac{3\cdot 5}{2\cdot4}\cdot x^2 - \dfrac{
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -311,8 +319,9 @@ $\quad y = \sqrt{2 + \sqrt{4 + \sqrt{6 + ... + \sqrt{(2n)}}}} \;.\quad$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -336,8 +345,9 @@ $$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -361,8 +371,9 @@ $$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -385,8 +396,9 @@ $$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
