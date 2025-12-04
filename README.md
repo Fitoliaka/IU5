@@ -93,8 +93,9 @@ $$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - \;a \quad, \; a \; \geq 0 \\[1em]
-\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \; a \; < 0
+\displaystyle \prod_{\substack{i=2\;(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\\
+\displaystyle \prod_{\substack{i=3\;(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
