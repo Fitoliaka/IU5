@@ -68,7 +68,7 @@ git push --set-upstream origin lab_2
 Расчет степенных функций и, особенно, факториалов, может привести к быстрому росту значений и, вследствие, к потери точности вычислений и даже переполнению. Чтобы этого избежать, следует использовать свойство сходимости ряда Тейлора. Это позволяет вычислять каждый следующий член ряда Тейлора по следующей формуле:
 
 $$
-A_{i} = A_{i-1} \cdot  ,
+A_{i} = A_{i-1} \cdot k,
 $$
 
 где $A_{i}$ - i-ый член ряда Тейлора;
@@ -118,16 +118,16 @@ $\quad y = 1 - \dfrac{x^2}{2!} +\dfrac{x^4}{4!} - \dfrac{x^6}{6!} + ... + (-1)^n
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
 Значение `a` вводится с клавиатуры;
 
 3. Вычислите значения суммы ряда: $\quad S(x) = 1 + \dfrac{x^2}{2!} + ... + \dfrac{x^{2n}}{(2n)!}\quad $
-и функции $Y(x) =\dfrac{e^x + e^{-x}}{2 $, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
+и функции $Y(x) =\dfrac{e^x + e^{-x}}{2}$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
@@ -143,9 +143,9 @@ $\quad y = 1 + \dfrac{x \cdot\ln a}{1!} + \dfrac{(x \cdot\ln a)^{2}}{2!} + ... +
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -168,9 +168,9 @@ $\quad y = x - \dfrac{x^2}{2} +\dfrac{x^3}{3} - \dfrac{x^4}{4} + ... + (-1)^{(n+
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -193,16 +193,16 @@ $\quad y =\dfrac{1}{2+\dfrac{1}{4 +\dfrac{1}{6 + ... + \dfrac{1}{2n}}}}  .\quad$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
 Значение `a` вводится с клавиатуры;
 
 3. Вычислите значения суммы ряда: $\quad S(x) = 1 + \dfrac{3x^2}{1!} + ... + \dfrac{{2n+1}}{n!}\cdot x^{2n}\quad$
-и функции $Y(x) = (1 + 2x^2)\cdot e^{x^{2} $, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
+и функции $Y(x) = (1 + 2x^2)\cdot e^{x^{2}}$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
@@ -218,9 +218,9 @@ $\quad y =\dfrac{1}{3 + \dfrac{1}{5 + \dfrac{1}{7 + ... + \dfrac{1}{(2n+1)}}}}  
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -231,7 +231,7 @@ $$
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
-$\quad y = 1 - \dfrac{x^2}{1\cdot2} +\dfrac{x^3}{2\cdot4} - \dfrac{x^4}{3\cdot8} + ... + (-1)^{(n+1)} \dfrac{x^{n+1}}{n\cdot2^n} , \quad$ для $|x| <  .\quad$
+$\quad y = 1 - \dfrac{x^2}{1\cdot2} +\dfrac{x^3}{2\cdot4} - \dfrac{x^4}{3\cdot8} + ... + (-1)^{(n+1)} \dfrac{x^{n+1}}{n\cdot2^n} , \quad$ для $|x| < 1.\quad$
 Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 7
@@ -243,16 +243,16 @@ $\quad y = 1 - \dfrac{x^2}{1\cdot2} +\dfrac{x^3}{2\cdot4} - \dfrac{x^4}{3\cdot8}
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
 Значение `a` вводится с клавиатуры;
 
 3. Вычислите значения суммы ряда: $\quad S(x) = x^3 - \dfrac{x^5}{3!} + ... + (-1)^n\dfrac{x^{2n+3}}{2n+1}\qquad$
-и функции $Y(x) = x^2\cdot arctg(x $, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
+и функции $Y(x) = x^2\cdot arctg(x)$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
@@ -268,9 +268,9 @@ $\quad y = \sqrt{1 + \sqrt{3 + \sqrt{5 + ... + \sqrt{(2n+1)}}}} .\quad$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -281,7 +281,7 @@ $$
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
-$\quad y = 1 - \dfrac{3}{2}\cdot x +\dfrac{3\cdot 5}{2\cdot4}\cdot x^2 - \dfrac{3\cdot 5\cdot 7}{2\cdot 4\cdot 6}\cdot x^3 + ... + (-1)^{(n)} \dfrac{3\cdot 5 \cdot ... \cdot (2n+1)}{2\cdot 4\cdot ... \cdot (2n)}\cdot x^n , \quad$ для $|x| <  .\quad$
+$\quad y = 1 - \dfrac{3}{2}\cdot x +\dfrac{3\cdot 5}{2\cdot4}\cdot x^2 - \dfrac{3\cdot 5\cdot 7}{2\cdot 4\cdot 6}\cdot x^3 + ... + (-1)^{(n)} \dfrac{3\cdot 5 \cdot ... \cdot (2n+1)}{2\cdot 4\cdot ... \cdot (2n)}\cdot x^n , \quad$ для $|x| < 1.\quad$
 Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 9
@@ -293,9 +293,9 @@ $\quad y = 1 - \dfrac{3}{2}\cdot x +\dfrac{3\cdot 5}{2\cdot4}\cdot x^2 - \dfrac{
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -319,9 +319,9 @@ $\quad y = \sqrt{2 + \sqrt{4 + \sqrt{6 + ... + \sqrt{(2n)}}}} .\quad$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -345,9 +345,9 @@ $$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -371,9 +371,9 @@ $$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
@@ -396,9 +396,9 @@ $$
 $$
 S=
 \begin{cases}
-\displaystyle \prod_{\substack{i= (2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
+\displaystyle \prod_{\substack{i=2(2)}}^{8} i^2 \quad - a \quad, \quad a  \geq 0
 \\
-\displaystyle \prod_{\substack{i= (3)}}^{9} (i-a) \qquad, \quad a  < 0
+\displaystyle \prod_{\substack{i=3(3)}}^{9} (i-a) \qquad, \quad a  < 0
 \end{cases}
 $$
 
