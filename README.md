@@ -106,7 +106,7 @@ $$
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
-$\quad y = 1 - \dfrac{x^2}{2!} +\dfrac{x^4}{4!} - \dfrac{x^6}{6!} + ... + (-1)^n\cdot \dfrac{x^{2n}}{2n!} \quad$
+$\quad y = 1 - \dfrac{x^2}{2!} +\dfrac{x^4}{4!} - \dfrac{x^6}{6!} + ... + (-1)^n\cdot \dfrac{x^{2n}}{(2n)!} \quad$
 Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 2
@@ -307,7 +307,7 @@ $$
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
 
 4. Вычислите **y** по формуле:
-$\quad y = \sqrt{2 + \sqrt{4 + \sqrt{6 + ... + \sqrt{2n}}}} \quad$. 
+$\quad y = \sqrt{2 + \sqrt{4 + \sqrt{6 + ... + \sqrt{2n}}}} \quad$.
 Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 10
@@ -327,14 +327,13 @@ $$
 
 Значение `a` вводится с клавиатуры;
 
- 3. Вычислите значения суммы:
-![enter image description here](https://sun9-72.userapi.com/s/v1/ig2/ZyQ6X-5AZGGdQROnjbcH7LZ9T7DMLlWCLumK9_aM1GPa2Ag80GBs4h-RTozAssFpreCg-eSWhY2QJ4-H193Gqjmw.jpg?quality=95&as=32x6,48x9,72x14,108x21,160x31,212x41&from=bu&u=dfTD6EN6W94gO7_Oho5eYMMdc4QLbag5YZNAn1a-OPU&cs=212x41)
-и функции:
-![enter image description here](https://sun9-77.userapi.com/s/v1/ig2/82PffPezhnmMo3Hvux39eDenpfuRY00GhviT8XVEeRVQP8D7DmSilRcdtVkSSSKhWajCt8zUWsn04BF9ubSPY_bm.jpg?quality=95&as=32x6,48x8,72x13,108x19,115x20&from=bu&u=ornxR45c8gQEZd-2gKYbUl6qZxLaoumbfKwI6xnCCOE&cs=115x20), где **0 ≤ х ≤1**, с шагом **h = 0.2**. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей **1e-6**.
+3. Вычислите значения суммы ряда: $\quad S(x) = x - \dfrac{x^3}{3} + ... + (-1)^n \cdot \dfrac{x^{2n+1}}{2n+1}\qquad$
+и функции $Y(x) = \arctg(x)$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
- 4. Вычислите **y** по формуле:
-![enter image description here](https://sun9-22.userapi.com/s/v1/ig2/tOOC0xGbjhnBxFALHmv3UfardH-D-LZoGhoT0ltGtjnK6XA31SYHYA4UBPu1HlPPS9u3bp6f14jZ5pIOMr7XLp7B.jpg?quality=95&as=32x3,48x5,72x7,108x11,160x16,240x24,360x36,422x42&from=bu&u=DKS-uitJAxNlYxcS_Unk1WrOLQFzZWCnTCfulyu8fqw&cs=422x42)
-Натуральное значение **n** и значение **х** введите с клавиатуры. Обеспечьте возможность вычислить **y** для нескольких значений **n** и выведите на экран значения промежуточных (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
+
+4. Вычислите **y** по формуле:
+$\quad y = 1 - \dfrac{5}{2}\cdot x +\dfrac{5\cdot 7}{2 \cdot 4} \cdot x^2 - \dfrac{5\cdot 7\cdot 9}{2\cdot 4\cdot 6}\cdot x^3 + ... + (-1)^{n} \cdot\dfrac{5\cdot 7 \cdot ... \cdot (2n+3)}{2\cdot 4\cdot ... \cdot (2n)}\cdot x^n , \quad$ для $|x| < 1.\quad$
+Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 11
 
@@ -352,15 +351,14 @@ S=
 $$
 
 Значение `a` вводится с клавиатуры;
-
- 3. Вычислите значения суммы:
-![enter image description here](https://sun9-67.userapi.com/s/v1/ig2/SLTQdlMjwNIRh0INzjMzo5nKXV0q7k2n2CJA6igIqyxuwetF9oyk4IWvTBW9RTHt6SpINxhbHhkHAmThjEwkPDDA.jpg?quality=95&as=32x5,48x8,72x12,108x18,160x27,240x41,253x43&from=bu&u=UWU542QvAR8yk2FVeEkzqPNH9SNob7tFsvusxnSDU44&cs=253x43)
-и функции:
-![enter image description here](https://sun9-50.userapi.com/s/v1/ig2/jlucxRKDvTjo1g1FMEpzOa1s4pEh_tYckanMciaL_-u4yrLZrrFJnfNXO-E4m-mG56Q9ppLAfAbJK0gTq5nB_5y1.jpg?quality=95&as=32x6,48x10,72x15,108x22,160x32,223x45&from=bu&u=qvnFrX5k3mIro9rDc5fH2oZ41Uzz1BU7tGQz66M1oDQ&cs=223x45), где **0 ≤ х ≤1**, с шагом **h = 0.2**. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей **1e-6**.
+1. Вычислите значения суммы ряда: $\quad S(x) = 1 - \dfrac{3}{2!}\cdot x^2 + ... + (-1)^{n} \cdot\dfrac{(2n)^2 + 1}{(2n)!}\cdot x^{2n}\qquad$
+и функции $Y(x) = \left(1- \dfrac{x^2}{2} \right) \cdot \cos(x) - \dfrac{x}{2} \cdot \sin(x)$
+, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
- 4. Вычислите **y** по формуле:
-![enter image description here](https://sun9-17.userapi.com/s/v1/ig2/AHKBMxKWwWf02o5RYi6PRR-ziqTu7Ynu2cGfo5E11U1so_0pLp-it8MstfYc0je2fgLomiz2oxPl2Q4fxaQmRIwL.jpg?quality=95&as=32x4,48x6,72x9,108x13,160x20,219x27&from=bu&u=_6jFpOnO3LLAwmXitZn3K0yK6POW5HlSvLInjFNKd4c&cs=219x27)
-Натуральное значение **n** введите с клавиатуры. Обеспечьте возможность вычислить **y** для нескольких значений **n** и выведите на экран значения промежуточных (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
+
+4. Вычислите **y** по формуле:
+$\quad y = \sqrt{2n + \sqrt{2(n-1) + ... +\sqrt{4 +  \sqrt{2}}}} \quad$.
+Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 12
 
@@ -379,13 +377,13 @@ $$
 
 Значение `a` вводится с клавиатуры;
 
- 3. Вычислите значения суммы:
-![enter image description here](https://sun9-72.userapi.com/s/v1/ig2/vPHWeV_hqUzWPLEMROGVKodAG58gfN9xCcN-w6Nmojj2ngksAcO6YHrlxTXYCA5XlbyiBZu5mxTABL5eEgBW3YOP.jpg?quality=95&as=32x5,48x7,72x11,108x16,160x24,240x37,288x44&from=bu&u=5_h8sBt8h-FVwehVmIeMzhuH-sD8IJf1ef-eSpbcTCg&cs=288x44)
-и функции **Y(x) = cos(2x)**, где **0 ≤ х ≤1**, с шагом **h = 0.2**. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей **1e-6**.
+3. Вычислите значения суммы ряда: $\quad S(x) = 1 - \dfrac{(2x)^2}{2} +\dfrac{(2x)^4}{2 \cdot 4} - ... + (-1)^n \cdot \dfrac{(2x)^{(2n)}}{(2n)!}\qquad$
+и функции $Y(x) = \cos(2x)$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
- 4. Вычислите **y** по формуле:
-![enter image description here](https://sun9-54.userapi.com/s/v1/ig2/4aBJQxvDVPhek3RRVwZihh_OQARK3tQZ30wZhjfSTY00-XFgmKLdkBpLneCRevlJe18CbkS4vZJn4hX8mtRL3qVA.jpg?quality=95&as=32x6,48x10,72x14,108x22,160x32,214x43&from=bu&u=d6vHrkUrt3GWDMXk3t7WeTZIBOKm4_6Og7fGmPWf6mQ&cs=214x43)
-Натуральное значение **n** и значение **х** введите с клавиатуры. Обеспечьте возможность вычислить **y** для нескольких значений **n** и выведите на экран значения промежуточных (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
+
+4. Вычислите **y** по формуле:
+$\quad y = 1 + \dfrac{x^2}{2!} +\dfrac{x^4}{4!} + \dfrac{x^6}{6!} + ... + \dfrac{x^{2n}}{(2n)!} \quad$
+Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
 
 ### Вариант 13
 
@@ -404,11 +402,10 @@ $$
 
 Значение `a` вводится с клавиатуры;
 
-3. Вычислите значения суммы:
-![enter image description here](https://sun9-53.userapi.com/s/v1/ig2/N_3nah7Tbar0uubwrBIkxEIq_u3nqlMzjlMH1qWVzgQ1Kh12P6HIjHmXPqQqJVnUAKg9l8iarGHbWMYaf7EA9832.jpg?quality=95&as=32x7,48x10,72x15,108x23,160x34,193x41&from=bu&u=C1FSp3lmM2NOl6zo5u_ZJwG9Bgdxao5PEb33h2d9NFk&cs=193x41)
-и функции:
-![enter image description here](https://sun9-48.userapi.com/s/v1/ig2/jyH3Ap_PSlA8H21XaHeaO9R-ScAupCMhVKZWzhEXY-SlvQ12WicraFotgGP0FdtSSBd2iw4-vzjtPiEGjBbuZwXP.jpg?quality=95&as=32x12,48x18,72x26,106x39&from=bu&u=4xTVAyrvAbGTAme8Olx38iX4WZ-uAZYaUy47S5RXRHQ&cs=106x39), где **0 ≤ х ≤1**, с шагом **h = 0.2**. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей **1e-6**.
+3. Вычислите значения суммы ряда: $\quad S(x) = 2 \left( x + \dfrac{x^3}{3} + ... + \dfrac{x^{2n+1}}{2n+1}\right)\qquad$
+и функции $Y(x) = \ln\left(\dfrac{1 + x}{1 - x}\right)$, где `0 ≤ х ≤1`, с шагом `h = 0.2`. Вычисление суммы ряда Тейлора производите с погрешностью, не превышающей `1e-6`.
 Результат представить в виде таблицы (без рамок), которая содержит четыре столбца со значениями x, Y(x), S(x) и N, где N - номер последнего слагаемого ряда;
- 4. Вычислите **y** по формуле:
-![enter image description here](https://sun9-67.userapi.com/s/v1/ig2/KhHbz-IgzKub3O0wdE8EXSK-f2WXhstXS_C8i7YqTDYZD6Qn3V-Ukzi1_BFLzeI9S7rqg1lqMirhyPZNRVf6xxCu.jpg?quality=95&as=32x6,48x9,72x13,108x19,160x29,240x43,244x44&from=bu&u=P8qVrCxboTI_f-F1O3E1RYAqGDYxfzuCO9Y31-_xazc&cs=244x44)
-Натуральное значение **n** и значение **х** введите с клавиатуры. Обеспечьте возможность вычислить **y** для нескольких значений **n** и выведите на экран значения промежуточных (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
+
+4. Вычислите **y** по формуле:
+$\quad y = x + \dfrac{x^2}{1 \cdot 2} + \dfrac{x^3}{2 \cdot 4} + \dfrac{x^4}{3 \cdot 8}\ + ... + \dfrac{x^{n+1}}{n \cdot 2^n}\quad$
+Натуральное значение `n` и значение `х` введите с клавиатуры. Обеспечьте возможность вычислить `y` для нескольких значений `n` и выведите на экран значения **промежуточных** (частичных) сумм при количестве слагаемых **3**, **5** и **10**.
