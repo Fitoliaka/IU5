@@ -8,4 +8,3 @@
 
 	 - [Программирование сетевых приложений](https://fitoliaka.github.io/IU5/PNA)
 
-	 - [Системное программирование](https://fitoliaka.github.io/IU5/SP/)
